@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  font-size: 20px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+table {
+  width: 500px;
+  height: 80px;
+  border: 1px solid #444444;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+th,
+td {
+  border: 1px solid #444444;
+}
+
+input {
+  height: 40px;
+}
+
+#content {
+  width: 420px;
+}
+
+#submit {
+  background-color: teal;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
