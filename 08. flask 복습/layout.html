@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Elice</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+        function deleteUser() {
+            let username = $("#deleteUsername").val();
+            $.ajax({
+              type: "DELETE",
+              url: "/user",
+              data: {
+                username
+              },
+              success: function(response) {
+                if (response["result"] == "success") {
+                    alert(`${username}이 삭제되었습니다.`);
+                } else {
+                    alert(`${username}이 존재하지 않습니다.`);
+                }
+                window.location.replace('/user');
+              }
+            });
+          }
+          
+          function patchUser(){
+            const username = $('#username').val();
+            const new_username = $('#new_username').val();
+    
+            $.ajax({
+                type:'PATCH',
+                url: '/user',
+                data:{
+                    username,
+                    new_username,
+                },
+                success: function(response){
+                    if(response['result'] === "success"){
+                        alert(`${username}이 ${new_username}으로 변경되었습니다`);
+                    }else{
+                        alert(`${username}이 존재하지 않습니다.`);
+                    }
+                    window.location.reload();
+                }
+            })
+            
+            
+          }
+    </script>
+  </head>
+  <body>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('user') }}">User</a>
+    <br />
+    <br />
+    <br />
+
+    {% block content %} {% endblock %}
+  </body>
+</html>
